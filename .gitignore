@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+.venv/
+venv/
+
+# TensorBoard / training logs
+tb_*/
+runs/
+wandb/
+
+# Data & experiment outputs
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.zip
+
+# Debug outputs
+*_debug*.png
+*_debug*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
