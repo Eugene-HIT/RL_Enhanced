@@ -20,10 +20,15 @@ wandb/
 *.pth
 *.ckpt
 *.zip
+*.log
 
 # Debug outputs
 *_debug*.png
 *_debug*.jpg
+*.jpg
+*.png
+*.mat
+*.svg
 
 # OS
 .DS_Store
