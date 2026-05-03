@@ -106,26 +106,36 @@ snap_lin = d4(sm_lin);
 snap_spl = d4(sm_spl);
 
 %% -------- Plot (Single panel: Snap) --------
-fig = figure('Color','w','Position',[200 80 900 400]);
-LW = 2.0; % 线条粗细一致
+fig = figure('Color','w','Position',[200 80 850 350]);
 
-hold on; grid off; box on;
-plot(t, snap_ms, 'LineWidth',LW);
-plot(t, snap_lin, 'LineWidth',LW);
-plot(t, snap_spl, 'LineWidth',LW);
-ylabel('$\mathrm{Snap}\,(m/s^4)$','Interpreter','latex');
-xlabel('$\mathrm{Time}\,(s)$','Interpreter','latex');
-title('Fourth derivative (snap): Minimum-snap trajectory vs. baselines');
-legend('MinSnap (planned)','A* linear fit','A* cubic spline', 'Location','best');
+hold on; grid off; box on; 
+set(gca,'LineWidth',0.8,'TickDir','in','TickLength',[0.005 0.005]);
 
-% 裁掉首尾的剧烈数值尖刺，从而让中间的波动细节能填满图表
+% IEEE颜色盘: Blue, Red/Orange, Yellow/Orange
+c_ms  = [0 0.4470 0.7410];
+c_lin = [0.8500 0.3250 0.0980];
+c_spl = [0.9290 0.6940 0.1250];
+
+p1 = plot(t, snap_ms, '-', 'Color', c_ms, 'LineWidth', 2.0);
+p2 = plot(t, snap_lin, '-', 'Color', c_lin, 'LineWidth', 1.8);
+p3 = plot(t, snap_spl, '-', 'Color', c_spl, 'LineWidth', 1.5);
+
+ylabel('Snap (/s^4$)','Interpreter','latex', 'FontSize', 12);
+xlabel('Time ($)','Interpreter','latex', 'FontSize', 12);
+
+% 图例设置: 紧凑有边框的样式，如参考图所示
+lgd = legend([p1, p2, p3], {'MinSnap (planned)', 'A* linear fit', 'A* cubic spline'}, 'Location', 'northeast');
+set(lgd, 'Interpreter', 'latex', 'FontSize', 11, 'Box', 'on', 'EdgeColor', [0.4 0.4 0.4]);
+
 t_range = t(end) - t(1);
 xlim([t(1) + 0.05*t_range, t(end) - 0.05*t_range]);
-% ylim([-25, 25]); % 取消 y 轴限制让尖刺能够正常显示完整
 
-% 视觉细节
-set(findall(fig,'-property','FontName'),'FontName','Times New Roman');
-set(findall(fig,'-property','FontSize'),'FontSize',12);
+% 动态拉高y轴顶端，防止曲线遮挡到右上角的legend
+y_lims = ylim;
+ylim([y_lims(1)*1.05, y_lims(2)*1.35]);
+
+% 坐标轴数字字体设置
+set(gca, 'FontName', 'Times New Roman', 'FontSize', 11);
 
 %% -------- Export --------
 exportgraphics(fig, 'minsnap_advantage.pdf', 'ContentType','vector');
