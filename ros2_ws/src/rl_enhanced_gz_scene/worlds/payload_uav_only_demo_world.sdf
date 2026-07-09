@@ -1,0 +1,221 @@
+<?xml version="1.0" ?>
+<!--
+  创建时间: 2026-06-04
+  创建者: Eugene
+  最后修改时间: 2026-06-04
+  功能: 仅保留载荷与三架无人机动态更新的最小 Gazebo 演示 world，
+        用于在箭头/挂点可视化关闭时验证主播放链的稳定性。
+
+  Created: 2026-06-04
+  Author: Eugene
+  Last Modified: 2026-06-04
+  Purpose: Minimal Gazebo demo world that keeps only payload and three UAV pose
+           updates so the main playback path can be validated without arrow or
+           attachment-marker visualization.
+-->
+<sdf version="1.10">
+  <world name="payload_demo_world">
+    <gravity>0 0 -9.8</gravity>
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors"/>
+    <plugin filename="libsmooth_playback_system.so" name="rl_enhanced_gz_scene::SmoothPlaybackSystem">
+      <enabled>false</enabled>
+      <csv_path>/tmp/rl_enhanced_playback_samples.csv</csv_path>
+      <payload_name>trajectory_payload</payload_name>
+      <drone_front_name>world_drone_front</drone_front_name>
+      <drone_rear_left_name>world_drone_rear_left</drone_rear_left_name>
+      <drone_rear_right_name>world_drone_rear_right</drone_rear_right_name>
+      <goal_marker_name>goal_cross_marker</goal_marker_name>
+      <goal_marker_x>0.0</goal_marker_x>
+      <goal_marker_y>19.0</goal_marker_y>
+      <goal_marker_z>2.05</goal_marker_z>
+      <goal_marker_yaw_rate>0.30</goal_marker_yaw_rate>
+      <speed>1.0</speed>
+      <z_offset>1.10</z_offset>
+      <drone_z_rel>0.40</drone_z_rel>
+      <drone_front_x>0.20</drone_front_x>
+      <drone_front_y>0.00</drone_front_y>
+      <drone_rear_left_x>-0.17</drone_rear_left_x>
+      <drone_rear_left_y>0.13</drone_rear_left_y>
+      <drone_rear_right_x>-0.17</drone_rear_right_x>
+      <drone_rear_right_y>-0.13</drone_rear_right_y>
+    </plugin>
+
+    <scene>
+      <ambient>0.18 0.22 0.30 1</ambient>
+      <background>0.12 0.16 0.24 1</background>
+    </scene>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 25 0 0 0</pose>
+      <diffuse>0.95 0.95 0.95 1</diffuse>
+      <specular>0.25 0.25 0.25 1</specular>
+      <direction>-0.20 0.10 -0.97</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="ground_link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>120 120</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>120 120</size></plane></geometry>
+          <material>
+            <ambient>0.20 0.24 0.31 1</ambient>
+            <diffuse>0.20 0.24 0.31 1</diffuse>
+            <specular>0.03 0.04 0.06 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="goal_cross_marker">
+      <static>false</static>
+      <pose>0.000000 19.000000 2.050000 0 0 0</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.010</mass>
+          <inertia>
+            <ixx>0.0001</ixx><iyy>0.0001</iyy><izz>0.0001</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="base_ring">
+          <pose>0 0 -0.210000 0 0 0</pose>
+          <geometry><cylinder><radius>0.300000</radius><length>0.090000</length></cylinder></geometry>
+          <material>
+            <ambient>0.12 0.78 0.30 1</ambient>
+            <diffuse>0.18 0.92 0.36 1</diffuse>
+            <specular>0.05 0.10 0.05 1</specular>
+            <emissive>0.10 0.45 0.15 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="trajectory_payload">
+      <static>false</static>
+      <pose>0.000000 -2.000000 1.100000 0 0 0</pose>
+      <link name="payload_link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>2.0</mass>
+          <inertia>
+            <ixx>0.05</ixx>
+            <iyy>0.12</iyy>
+            <izz>0.13</izz>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyz>0.0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.56 0.26 0.18</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.68 0.32 0.22</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.42 0.98 1</ambient>
+            <diffuse>0.08 0.42 0.98 1</diffuse>
+            <specular>0.18 0.24 0.35 1</specular>
+            <emissive>0.02 0.10 0.30 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="world_drone_front">
+      <static>false</static>
+      <pose>0.200000 -2.000000 2.000000 0 0 0.000000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="world_drone_rear_left">
+      <static>false</static>
+      <pose>-0.170000 -1.870000 2.000000 0 0 0.600000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="world_drone_rear_right">
+      <static>false</static>
+      <pose>-0.170000 -2.130000 2.000000 0 0 -0.600000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

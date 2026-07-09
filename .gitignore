@@ -30,6 +30,13 @@ wandb/
 *.mat
 *.svg
 
+# Workspace generated directories
+.vscode/
+build/
+install/
+log/
+inverse_transport_development/results/
+
 # OS
 .DS_Store
 Thumbs.db

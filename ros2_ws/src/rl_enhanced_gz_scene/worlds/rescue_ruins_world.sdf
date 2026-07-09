@@ -1,0 +1,2801 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="rescue_ruins_world">
+    <gravity>0 0 -9.8</gravity>
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors"/>
+    <plugin filename="gz-sim-particle-emitter-system" name="gz::sim::systems::ParticleEmitter"/>
+    <plugin filename="libsmooth_playback_system.so" name="rl_enhanced_gz_scene::SmoothPlaybackSystem">
+      <enabled>false</enabled>
+      <csv_path>/tmp/rl_enhanced_playback_samples.csv</csv_path>
+      <payload_name>trajectory_payload</payload_name>
+      <drone_front_name>world_drone_front</drone_front_name>
+      <drone_rear_left_name>world_drone_rear_left</drone_rear_left_name>
+      <drone_rear_right_name>world_drone_rear_right</drone_rear_right_name>
+      <goal_marker_name>goal_cross_marker</goal_marker_name>
+      <goal_marker_x>0.0</goal_marker_x>
+      <goal_marker_y>19.0</goal_marker_y>
+      <goal_marker_z>2.05</goal_marker_z>
+      <goal_marker_yaw_rate>0.30</goal_marker_yaw_rate>
+      <speed>1.0</speed>
+      <z_offset>1.10</z_offset>
+      <drone_z_rel>0.40</drone_z_rel>
+      <drone_front_x>0.20</drone_front_x>
+      <drone_front_y>0.00</drone_front_y>
+      <drone_rear_left_x>-0.17</drone_rear_left_x>
+      <drone_rear_left_y>0.13</drone_rear_left_y>
+      <drone_rear_right_x>-0.17</drone_rear_right_x>
+      <drone_rear_right_y>-0.13</drone_rear_right_y>
+    </plugin>
+    <scene><ambient>0.38 0.36 0.34 1</ambient><background>0.72 0.71 0.68 1</background></scene>
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 30 0 0 0</pose>
+      <diffuse>0.82 0.79 0.74 1</diffuse>
+      <specular>0.22 0.22 0.22 1</specular>
+      <direction>-0.35 0.18 -0.92</direction>
+    </light>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="ground_link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>120 120</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>120 120</size></plane></geometry>
+          <material><ambient>0.46 0.44 0.42 1</ambient><diffuse>0.46 0.44 0.42 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="left_wall_a">
+      <static>true</static>
+      <pose>-1.544520 0.200000 2.260000 0.000000 0.000000 0.030000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.900000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.900000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.21 0.19 0.16 1</ambient>
+            <diffuse>0.40 0.35 0.30 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="left_wall_b">
+      <static>true</static>
+      <pose>-1.454520 5.000000 2.260000 0.000000 0.000000 -0.050000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 4.200000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 4.200000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.14 0.10 1</ambient>
+            <diffuse>0.34 0.24 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="left_wall_c">
+      <static>true</static>
+      <pose>-1.564520 9.800000 2.260000 0.000000 0.000000 0.040000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.800000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.800000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.16 0.13 1</ambient>
+            <diffuse>0.34 0.30 0.26 1</diffuse>
+            <specular>0.010 0.010 0.010 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="left_wall_d">
+      <static>true</static>
+      <pose>-1.434520 14.400000 2.260000 0.000000 0.000000 -0.030000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.600000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.600000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.09 0.08 0.07 1</ambient>
+            <diffuse>0.15 0.14 0.13 1</diffuse>
+            <specular>0.004 0.004 0.004 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="left_wall_e">
+      <static>true</static>
+      <pose>-1.534520 18.200000 2.260000 0.000000 0.000000 0.020000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.700000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.700000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.21 0.19 0.16 1</ambient>
+            <diffuse>0.40 0.35 0.30 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="right_wall_a">
+      <static>true</static>
+      <pose>3.635480 0.300000 2.260000 0.000000 0.000000 -0.040000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.800000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.800000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.14 0.10 1</ambient>
+            <diffuse>0.34 0.24 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="right_wall_b">
+      <static>true</static>
+      <pose>3.545480 5.100000 2.260000 0.000000 0.000000 0.050000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 4.100000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 4.100000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.16 0.13 1</ambient>
+            <diffuse>0.34 0.30 0.26 1</diffuse>
+            <specular>0.010 0.010 0.010 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="right_wall_c">
+      <static>true</static>
+      <pose>3.655480 10.000000 2.260000 0.000000 0.000000 -0.030000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.900000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.900000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.09 0.08 0.07 1</ambient>
+            <diffuse>0.15 0.14 0.13 1</diffuse>
+            <specular>0.004 0.004 0.004 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="right_wall_d">
+      <static>true</static>
+      <pose>3.525480 14.900000 2.260000 0.000000 0.000000 0.040000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.700000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.700000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.21 0.19 0.16 1</ambient>
+            <diffuse>0.40 0.35 0.30 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="right_wall_e">
+      <static>true</static>
+      <pose>3.635480 18.100000 2.260000 0.000000 0.000000 -0.020000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.320000 3.500000 2.300000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.320000 3.500000 2.300000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.14 0.10 1</ambient>
+            <diffuse>0.34 0.24 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="ceiling_a">
+      <static>true</static>
+      <pose>0.225480 2.400000 3.200000 0.000000 0.100000 0.140000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>1.350000 2.200000 0.180000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>1.350000 2.200000 0.180000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.16 0.13 1</ambient>
+            <diffuse>0.34 0.30 0.26 1</diffuse>
+            <specular>0.010 0.010 0.010 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="ceiling_b">
+      <static>true</static>
+      <pose>1.905480 8.100000 3.160000 0.000000 -0.080000 -0.120000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>1.240000 2.400000 0.180000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>1.240000 2.400000 0.180000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.09 0.08 0.07 1</ambient>
+            <diffuse>0.15 0.14 0.13 1</diffuse>
+            <specular>0.004 0.004 0.004 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="ceiling_c">
+      <static>true</static>
+      <pose>0.265480 13.900000 3.220000 0.000000 0.120000 0.100000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>1.300000 2.100000 0.180000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>1.300000 2.100000 0.180000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.14 0.10 1</ambient>
+            <diffuse>0.34 0.24 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_0_core">
+      <static>true</static>
+      <pose>1.136000 3.500000 2.165000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_0_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_0_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.20 0.19 1</ambient>
+            <diffuse>0.20 0.20 0.19 1</diffuse>
+            <specular>0.005 0.005 0.005 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.995</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_0_ruin_0">
+      <static>true</static>
+      <pose>1.136000 3.500000 2.165000 0.000000 0.070000 0.100000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_0_ruin_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.018 0.018 0.018 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_0_ruin_1">
+      <static>true</static>
+      <pose>1.136000 3.500000 2.165000 0.000000 -0.050000 -0.080000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_0_ruin_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.22 0.16 0.11 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_0_ruin_2">
+      <static>true</static>
+      <pose>1.136000 3.500000 2.165000 0.000000 0.070000 0.060000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_0_ruin_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.10 0.10 0.10 1</ambient>
+            <diffuse>0.18 0.18 0.17 1</diffuse>
+            <specular>0.006 0.006 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_0_crown_frag">
+      <static>true</static>
+      <pose>1.356000 3.500000 2.885000 0.000000 0.240000 0.110000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_b.stl</uri>
+              <scale>0.240000 0.528000 0.160000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.17 0.13 0.10 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_1_core">
+      <static>true</static>
+      <pose>1.431000 8.500000 2.269167 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_1_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_1_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.20 0.19 1</ambient>
+            <diffuse>0.20 0.20 0.19 1</diffuse>
+            <specular>0.005 0.005 0.005 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.995</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_1_ruin_0">
+      <static>true</static>
+      <pose>1.431000 8.500000 2.269167 0.000000 -0.070000 0.100000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_1_ruin_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.22 0.16 0.11 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_1_ruin_1">
+      <static>true</static>
+      <pose>1.431000 8.500000 2.269167 0.000000 0.050000 -0.080000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_1_ruin_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.10 0.10 0.10 1</ambient>
+            <diffuse>0.18 0.18 0.17 1</diffuse>
+            <specular>0.006 0.006 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_1_ruin_2">
+      <static>true</static>
+      <pose>1.431000 8.500000 2.269167 0.000000 -0.070000 0.060000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_1_ruin_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.018 0.018 0.018 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_1_crown_frag">
+      <static>true</static>
+      <pose>1.191000 8.500000 2.989167 0.000000 -0.220000 -0.100000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_b.stl</uri>
+              <scale>0.290000 0.528000 0.160000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.17 0.13 0.10 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_2_core">
+      <static>true</static>
+      <pose>1.285000 13.500000 2.229167 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_2_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_2_core.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.20 0.19 1</ambient>
+            <diffuse>0.20 0.20 0.19 1</diffuse>
+            <specular>0.005 0.005 0.005 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.995</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_2_ruin_0">
+      <static>true</static>
+      <pose>1.285000 13.500000 2.229167 0.000000 0.070000 0.100000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_2_ruin_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.10 0.10 0.10 1</ambient>
+            <diffuse>0.18 0.18 0.17 1</diffuse>
+            <specular>0.006 0.006 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_2_ruin_1">
+      <static>true</static>
+      <pose>1.285000 13.500000 2.229167 0.000000 -0.050000 -0.080000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_2_ruin_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.018 0.018 0.018 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_2_ruin_2">
+      <static>true</static>
+      <pose>1.285000 13.500000 2.229167 0.000000 0.070000 0.060000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/mid_obs_2_ruin_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.22 0.16 0.11 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="mid_obs_2_crown_frag">
+      <static>true</static>
+      <pose>1.505000 13.500000 2.949167 0.000000 0.240000 0.110000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_b.stl</uri>
+              <scale>0.340000 0.528000 0.160000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.17 0.13 0.10 1</ambient>
+            <diffuse>0.40 0.29 0.21 1</diffuse>
+            <specular>0.011 0.009 0.007 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="rubble_left_0">
+      <static>true</static>
+      <pose>-1.194520 5.800000 1.290000 0.000000 0.000000 -0.120000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_a.stl</uri>
+              <scale>0.800000 0.620000 0.360000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.18 0.15 1</ambient>
+            <diffuse>0.37 0.33 0.27 1</diffuse>
+            <specular>0.010 0.010 0.010 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="rubble_left_1">
+      <static>true</static>
+      <pose>-1.224520 14.900000 1.260000 0.000000 0.000000 0.140000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_b.stl</uri>
+              <scale>0.640000 0.500000 0.300000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.16 0.12 0.09 1</ambient>
+            <diffuse>0.31 0.23 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="rubble_right_0">
+      <static>true</static>
+      <pose>3.285480 7.100000 1.280000 0.000000 0.000000 0.140000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_b.stl</uri>
+              <scale>0.740000 0.580000 0.340000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.08 1</ambient>
+            <diffuse>0.16 0.16 0.15 1</diffuse>
+            <specular>0.004 0.004 0.004 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="rubble_right_1">
+      <static>true</static>
+      <pose>3.305480 16.100000 1.250000 0.000000 0.000000 -0.150000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_a.stl</uri>
+              <scale>0.600000 0.480000 0.280000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.16 0.12 0.09 1</ambient>
+            <diffuse>0.31 0.23 0.17 1</diffuse>
+            <specular>0.008 0.007 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="graffiti_l_base">
+      <static>true</static>
+      <pose>-1.344520 4.800000 2.250000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.040000 1.200000 0.360000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.52 0.12 0.10 1</ambient>
+            <diffuse>0.70 0.20 0.16 1</diffuse>
+            <specular>0.002 0.002 0.002 1</specular>
+            <emissive>0.03 0.01 0.01 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="graffiti_l_tag">
+      <static>true</static>
+      <pose>-1.343520 4.980000 2.350000 0.000000 0.000000 0.120000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.040000 0.800000 0.200000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.62 0.44 0.08 1</ambient>
+            <diffuse>0.96 0.74 0.16 1</diffuse>
+            <specular>0.002 0.002 0.002 1</specular>
+            <emissive>0.06 0.04 0.01 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="graffiti_l_drip">
+      <static>true</static>
+      <pose>-1.342520 5.170000 2.080000 0.000000 0.000000 -0.100000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.038000 0.300000 0.260000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.08 1</ambient>
+            <diffuse>0.18 0.18 0.18 1</diffuse>
+            <specular>0.001 0.001 0.001 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.020</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="graffiti_r_stencil">
+      <static>true</static>
+      <pose>3.435480 11.100000 2.200000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.040000 1.000000 0.320000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.30 0.42 1</ambient>
+            <diffuse>0.18 0.50 0.72 1</diffuse>
+            <specular>0.002 0.002 0.002 1</specular>
+            <emissive>0.01 0.03 0.05 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="graffiti_r_tag">
+      <static>true</static>
+      <pose>3.434480 11.000000 2.340000 0.000000 0.000000 -0.150000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.040000 0.700000 0.180000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.58 0.28 0.08 1</ambient>
+            <diffuse>0.94 0.54 0.18 1</diffuse>
+            <specular>0.002 0.002 0.002 1</specular>
+            <emissive>0.05 0.03 0.01 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="stripe_l_0">
+      <static>true</static>
+      <pose>-1.343520 8.600000 2.400000 0.000000 0.000000 0.300000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.036000 0.300000 0.090000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.54 0.43 0.08 1</ambient>
+            <diffuse>0.94 0.78 0.14 1</diffuse>
+            <specular>0.003 0.003 0.003 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="stripe_l_1">
+      <static>true</static>
+      <pose>-1.343520 8.870000 2.320000 0.000000 0.000000 0.300000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.036000 0.300000 0.090000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.07 0.07 0.07 1</ambient>
+            <diffuse>0.16 0.16 0.16 1</diffuse>
+            <specular>0.002 0.002 0.002 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="stripe_l_2">
+      <static>true</static>
+      <pose>-1.343520 9.140000 2.240000 0.000000 0.000000 0.300000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.036000 0.300000 0.090000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.54 0.43 0.08 1</ambient>
+            <diffuse>0.94 0.78 0.14 1</diffuse>
+            <specular>0.003 0.003 0.003 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="stain_floor_0">
+      <static>true</static>
+      <pose>1.385480 6.300000 1.195000 0.000000 0.000000 0.220000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.740000 0.520000 0.010000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.04 0.04 0.04 1</ambient>
+            <diffuse>0.11 0.11 0.11 1</diffuse>
+            <specular>0.001 0.001 0.001 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.150</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="stain_floor_1">
+      <static>true</static>
+      <pose>0.585480 12.400000 1.195000 0.000000 0.000000 -0.300000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.600000 0.460000 0.010000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.05 0.04 0.02 1</ambient>
+            <diffuse>0.14 0.10 0.06 1</diffuse>
+            <specular>0.001 0.001 0.001 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.200</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="fire_hazard_1">
+      <static>true</static>
+      <pose>3.165480 5.200000 1.140000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.720000 0.720000 0.080000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.720000 0.720000 0.080000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.08 0.02 0.35</ambient>
+            <diffuse>0.35 0.08 0.02 0.35</diffuse>
+            <specular>0.08 0.08 0.08 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+        <particle_emitter name="flame" type="ellipsoid">
+          <pose>0 0 0.190000 0 0 0</pose>
+          <emitting>true</emitting>
+          <size>0.180000 0.180000 0.050000</size>
+          <particle_size>0.110000 0.110000 0.110000</particle_size>
+          <lifetime>1.200000</lifetime>
+          <rate>120.000000</rate>
+          <min_velocity>0.220000</min_velocity>
+          <max_velocity>0.950000</max_velocity>
+          <scale_rate>0.520000</scale_rate>
+          <color_start>1.0 0.88 0.30 0.98</color_start>
+          <color_end>1.0 0.22 0.04 0.70</color_end>
+        </particle_emitter>
+        <particle_emitter name="smoke" type="ellipsoid">
+          <pose>0 0 0.330000 0 0 0</pose>
+          <emitting>true</emitting>
+          <size>0.070000 0.070000 0.030000</size>
+          <particle_size>0.045000 0.045000 0.045000</particle_size>
+          <lifetime>0.900000</lifetime>
+          <rate>0.200000</rate>
+          <min_velocity>0.050000</min_velocity>
+          <max_velocity>0.140000</max_velocity>
+          <scale_rate>0.040000</scale_rate>
+          <color_start>0.20 0.20 0.20 0.06</color_start>
+          <color_end>0.08 0.08 0.08 0.0</color_end>
+        </particle_emitter>
+        <visual name="flame_core_inner">
+          <pose>0 0 0.220000 0 0 0</pose>
+          <geometry>
+            <sphere><radius>0.070000</radius></sphere>
+          </geometry>
+          <material>
+            <ambient>1.0 0.68 0.18 1.0</ambient>
+            <diffuse>1.0 0.68 0.18 1.0</diffuse>
+            <emissive>1.0 0.68 0.18 1.0</emissive>
+          </material>
+          <transparency>0.05</transparency>
+        </visual>
+        <visual name="flame_core_glow">
+          <pose>0 0 0.260000 0 0 0</pose>
+          <geometry>
+            <sphere><radius>0.140000</radius></sphere>
+          </geometry>
+          <material>
+            <ambient>1.0 0.48 0.10 0.95</ambient>
+            <diffuse>1.0 0.48 0.10 0.95</diffuse>
+            <emissive>1.0 0.48 0.10 0.95</emissive>
+          </material>
+          <transparency>0.12</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="fire_hazard_2">
+      <static>true</static>
+      <pose>-1.094520 12.900000 1.140000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.760000 0.760000 0.080000</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.760000 0.760000 0.080000</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.08 0.02 0.35</ambient>
+            <diffuse>0.35 0.08 0.02 0.35</diffuse>
+            <specular>0.08 0.08 0.08 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+        <particle_emitter name="flame" type="ellipsoid">
+          <pose>0 0 0.200000 0 0 0</pose>
+          <emitting>true</emitting>
+          <size>0.190000 0.190000 0.050000</size>
+          <particle_size>0.115000 0.115000 0.115000</particle_size>
+          <lifetime>1.250000</lifetime>
+          <rate>128.000000</rate>
+          <min_velocity>0.220000</min_velocity>
+          <max_velocity>1.000000</max_velocity>
+          <scale_rate>0.540000</scale_rate>
+          <color_start>1.0 0.88 0.30 0.98</color_start>
+          <color_end>1.0 0.22 0.04 0.70</color_end>
+        </particle_emitter>
+        <particle_emitter name="smoke" type="ellipsoid">
+          <pose>0 0 0.350000 0 0 0</pose>
+          <emitting>true</emitting>
+          <size>0.075000 0.075000 0.030000</size>
+          <particle_size>0.048000 0.048000 0.048000</particle_size>
+          <lifetime>0.950000</lifetime>
+          <rate>0.200000</rate>
+          <min_velocity>0.050000</min_velocity>
+          <max_velocity>0.150000</max_velocity>
+          <scale_rate>0.040000</scale_rate>
+          <color_start>0.20 0.20 0.20 0.06</color_start>
+          <color_end>0.08 0.08 0.08 0.0</color_end>
+        </particle_emitter>
+        <visual name="flame_core_inner">
+          <pose>0 0 0.230000 0 0 0</pose>
+          <geometry>
+            <sphere><radius>0.075000</radius></sphere>
+          </geometry>
+          <material>
+            <ambient>1.0 0.68 0.18 1.0</ambient>
+            <diffuse>1.0 0.68 0.18 1.0</diffuse>
+            <emissive>1.0 0.68 0.18 1.0</emissive>
+          </material>
+          <transparency>0.05</transparency>
+        </visual>
+        <visual name="flame_core_glow">
+          <pose>0 0 0.270000 0 0 0</pose>
+          <geometry>
+            <sphere><radius>0.145000</radius></sphere>
+          </geometry>
+          <material>
+            <ambient>1.0 0.48 0.10 0.95</ambient>
+            <diffuse>1.0 0.48 0.10 0.95</diffuse>
+            <emissive>1.0 0.48 0.10 0.95</emissive>
+          </material>
+          <transparency>0.12</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_left_0">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_left_1">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_left_2">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_right_0">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_right_1">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_right_2">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_core_top_0">
+      <static>true</static>
+      <pose>0.780000 1.000000 2.100000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door1_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_broken_side">
+      <static>true</static>
+      <pose>-0.040000 0.920000 1.793184 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_b.stl</uri>
+              <scale>0.360000 1.734000 1.550400</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.16 0.12 1</ambient>
+            <diffuse>0.36 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_broken_top">
+      <static>true</static>
+      <pose>0.480000 0.880000 3.320000 0.000000 0.000000 0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_b.stl</uri>
+              <scale>0.400000 1.264800 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.14 0.14 0.13 1</ambient>
+            <diffuse>0.28 0.27 0.25 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_floor_frag">
+      <static>true</static>
+      <pose>0.960000 1.100000 1.180000 0.000000 0.000000 -0.160000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_a.stl</uri>
+              <scale>0.200000 0.530400 0.130000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.17 0.13 1</ambient>
+            <diffuse>0.34 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_ledge_frag">
+      <static>true</static>
+      <pose>0.700000 1.100000 3.200000 0.000000 0.120000 -0.220000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_b.stl</uri>
+              <scale>0.220000 0.612000 0.110000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.12 0.12 0.12 1</ambient>
+            <diffuse>0.24 0.24 0.23 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door1_base_frag">
+      <static>true</static>
+      <pose>1.040000 0.940000 1.140000 0.000000 0.000000 0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_c.stl</uri>
+              <scale>0.200000 0.489600 0.090000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.18 0.14 0.10 1</ambient>
+            <diffuse>0.30 0.23 0.18 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_left_0">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_left_1">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_left_2">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_right_0">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_right_1">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_right_2">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_core_top_0">
+      <static>true</static>
+      <pose>1.492000 6.000000 2.230000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door2_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_broken_side">
+      <static>true</static>
+      <pose>2.352000 6.080000 2.004400 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_a.stl</uri>
+              <scale>0.360000 1.734000 1.140000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.16 0.12 1</ambient>
+            <diffuse>0.36 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_broken_top">
+      <static>true</static>
+      <pose>1.792000 6.120000 3.180000 0.000000 0.000000 -0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_a.stl</uri>
+              <scale>0.400000 1.264800 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.14 0.14 0.13 1</ambient>
+            <diffuse>0.28 0.27 0.25 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_floor_frag">
+      <static>true</static>
+      <pose>1.312000 6.100000 1.580000 0.000000 0.000000 0.160000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_a.stl</uri>
+              <scale>0.200000 0.530400 0.130000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.17 0.13 1</ambient>
+            <diffuse>0.34 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_ledge_frag">
+      <static>true</static>
+      <pose>1.572000 5.900000 3.060000 0.000000 0.120000 0.220000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_b.stl</uri>
+              <scale>0.220000 0.612000 0.110000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.12 0.12 0.12 1</ambient>
+            <diffuse>0.24 0.24 0.23 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door2_base_frag">
+      <static>true</static>
+      <pose>1.232000 5.940000 1.540000 0.000000 0.000000 -0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_c.stl</uri>
+              <scale>0.200000 0.489600 0.090000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.18 0.14 0.10 1</ambient>
+            <diffuse>0.30 0.23 0.18 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_left_0">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_left_1">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_left_2">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_right_0">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_right_1">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_right_2">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_core_top_0">
+      <static>true</static>
+      <pose>1.370000 11.000000 2.308333 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door3_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_broken_side">
+      <static>true</static>
+      <pose>0.670000 10.920000 2.075213 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_b.stl</uri>
+              <scale>0.360000 1.734000 1.178000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.16 0.12 1</ambient>
+            <diffuse>0.36 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_broken_top">
+      <static>true</static>
+      <pose>1.070000 10.880000 3.283333 0.000000 0.000000 0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_b.stl</uri>
+              <scale>0.400000 1.264800 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.14 0.14 0.13 1</ambient>
+            <diffuse>0.28 0.27 0.25 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_floor_frag">
+      <static>true</static>
+      <pose>1.550000 11.100000 1.633333 0.000000 0.000000 -0.160000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_a.stl</uri>
+              <scale>0.200000 0.530400 0.130000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.17 0.13 1</ambient>
+            <diffuse>0.34 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_ledge_frag">
+      <static>true</static>
+      <pose>1.290000 11.100000 3.163333 0.000000 0.120000 -0.220000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_b.stl</uri>
+              <scale>0.220000 0.612000 0.110000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.12 0.12 0.12 1</ambient>
+            <diffuse>0.24 0.24 0.23 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door3_base_frag">
+      <static>true</static>
+      <pose>1.630000 10.940000 1.593333 0.000000 0.000000 0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_c.stl</uri>
+              <scale>0.200000 0.489600 0.090000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.18 0.14 0.10 1</ambient>
+            <diffuse>0.30 0.23 0.18 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_left_0">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_left_1">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_left_2">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_left_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_right_0">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_right_1">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_1.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_right_2">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_right_2.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_core_top_0">
+      <static>true</static>
+      <pose>1.200000 16.000000 2.150000 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/door4_core_top_0.stl</uri>
+              <scale>1.000000 1.000000 1.000000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.24 0.22 0.20 1</ambient>
+            <diffuse>0.46 0.42 0.37 1</diffuse>
+            <specular>0.012 0.012 0.012 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_broken_side">
+      <static>true</static>
+      <pose>1.915000 16.080000 1.879280 0.000000 0.000000 0.000000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/wall_chunk_a.stl</uri>
+              <scale>0.360000 1.734000 1.368000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.16 0.12 1</ambient>
+            <diffuse>0.36 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_broken_top">
+      <static>true</static>
+      <pose>1.500000 16.120000 3.250000 0.000000 0.000000 -0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/slab_a.stl</uri>
+              <scale>0.400000 1.264800 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.14 0.14 0.13 1</ambient>
+            <diffuse>0.28 0.27 0.25 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_floor_frag">
+      <static>true</static>
+      <pose>1.020000 16.100000 1.350000 0.000000 0.000000 0.160000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_a.stl</uri>
+              <scale>0.200000 0.530400 0.130000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.20 0.17 0.13 1</ambient>
+            <diffuse>0.34 0.28 0.22 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_ledge_frag">
+      <static>true</static>
+      <pose>1.280000 15.900000 3.130000 0.000000 0.120000 0.220000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_b.stl</uri>
+              <scale>0.220000 0.612000 0.110000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.12 0.12 0.12 1</ambient>
+            <diffuse>0.24 0.24 0.23 1</diffuse>
+            <specular>0.008 0.008 0.008 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <model name="door4_base_frag">
+      <static>true</static>
+      <pose>0.940000 15.940000 1.310000 0.000000 0.000000 -0.180000</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>../meshes/rubble_c.stl</uri>
+              <scale>0.200000 0.489600 0.090000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.18 0.14 0.10 1</ambient>
+            <diffuse>0.30 0.23 0.18 1</diffuse>
+            <specular>0.010 0.008 0.006 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+          <transparency>0.000</transparency>
+        </visual>
+      </link>
+    </model>
+    <light name="door1_inner_light_0" type="point">
+      <pose>0.780000 0.440000 1.936800 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door1_inner_light_1" type="point">
+      <pose>0.780000 1.000000 1.936800 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door1_inner_light_2" type="point">
+      <pose>0.780000 1.560000 1.936800 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door1_inner_floor_fill" type="point">
+      <pose>0.780000 1.000000 1.200000 0 0 0</pose>
+      <diffuse>0.90 0.68 0.20 1</diffuse>
+      <specular>0.10 0.08 0.03 1</specular>
+      <attenuation>
+        <range>2.200</range>
+        <constant>0.300</constant>
+        <linear>0.320</linear>
+        <quadratic>0.110</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door2_inner_light_0" type="point">
+      <pose>1.492000 5.440000 2.110000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door2_inner_light_1" type="point">
+      <pose>1.492000 6.000000 2.110000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door2_inner_light_2" type="point">
+      <pose>1.492000 6.560000 2.110000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door2_inner_floor_fill" type="point">
+      <pose>1.492000 6.000000 1.600000 0 0 0</pose>
+      <diffuse>0.90 0.68 0.20 1</diffuse>
+      <specular>0.10 0.08 0.03 1</specular>
+      <attenuation>
+        <range>2.200</range>
+        <constant>0.300</constant>
+        <linear>0.320</linear>
+        <quadratic>0.110</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door3_inner_light_0" type="point">
+      <pose>1.370000 10.440000 2.184333 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door3_inner_light_1" type="point">
+      <pose>1.370000 11.000000 2.184333 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door3_inner_light_2" type="point">
+      <pose>1.370000 11.560000 2.184333 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door3_inner_floor_fill" type="point">
+      <pose>1.370000 11.000000 1.653333 0 0 0</pose>
+      <diffuse>0.90 0.68 0.20 1</diffuse>
+      <specular>0.10 0.08 0.03 1</specular>
+      <attenuation>
+        <range>2.200</range>
+        <constant>0.300</constant>
+        <linear>0.320</linear>
+        <quadratic>0.110</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door4_inner_light_0" type="point">
+      <pose>1.200000 15.440000 2.006000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door4_inner_light_1" type="point">
+      <pose>1.200000 16.000000 2.006000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door4_inner_light_2" type="point">
+      <pose>1.200000 16.560000 2.006000 0 0 0</pose>
+      <diffuse>0.96 0.72 0.22 1</diffuse>
+      <specular>0.12 0.09 0.04 1</specular>
+      <attenuation>
+        <range>2.800</range>
+        <constant>0.240</constant>
+        <linear>0.260</linear>
+        <quadratic>0.080</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="door4_inner_floor_fill" type="point">
+      <pose>1.200000 16.000000 1.370000 0 0 0</pose>
+      <diffuse>0.90 0.68 0.20 1</diffuse>
+      <specular>0.10 0.08 0.03 1</specular>
+      <attenuation>
+        <range>2.200</range>
+        <constant>0.300</constant>
+        <linear>0.320</linear>
+        <quadratic>0.110</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <model name="goal_cross_marker">
+      <static>false</static>
+      <pose>0.000000 19.000000 2.050000 0 0 0</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.010</mass>
+          <inertia>
+            <ixx>0.0001</ixx><iyy>0.0001</iyy><izz>0.0001</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="base_ring">
+          <pose>0 0 -0.210000 0 0 0</pose>
+          <geometry><cylinder><radius>0.300000</radius><length>0.090000</length></cylinder></geometry>
+          <material>
+            <ambient>0.12 0.78 0.30 1</ambient>
+            <diffuse>0.18 0.92 0.36 1</diffuse>
+            <specular>0.05 0.10 0.05 1</specular>
+            <emissive>0.10 0.45 0.15 1</emissive>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+    <model name="safe_start_ring">
+      <static>true</static>
+      <pose>0.000000 -1.800000 1.140000 1.570796 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder><radius>0.420000</radius><length>0.080000</length></cylinder>
+          </geometry>
+          <material>
+            <ambient>0.15 0.85 0.35 1</ambient>
+            <diffuse>0.15 0.85 0.35 1</diffuse>
+            <emissive>0.15 0.85 0.35 1</emissive>
+          </material>
+          <transparency>0.18</transparency>
+        </visual>
+      </link>
+    </model>
+    <include>
+      <name>fuel_env_urban_platform_shell</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/urban%20platform</uri>
+      <pose>0.866099 8.800140 -0.566107 0.000000 0.000000 1.570000</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_r1</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>5.379010 2.308660 0.167325 0.000000 0.000000 -0.837659</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_l1</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>-4.845950 4.073690 0.000000 0.000000 0.000000 0.296836</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_r2</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>-0.409183 6.872600 -3.328980 0.000000 0.000000 -1.223260</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_l2</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>-4.001130 13.511200 0.000000 0.000000 0.000000 0.820759</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_r3</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>-1.559780 22.560100 0.000000 0.000000 0.000000 -1.100000</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <name>fuel_env_tunnel_collapse_l3</name>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/tunnel%20wall%20debris</uri>
+      <pose>-4.176500 -3.392500 0.229100 0.000000 0.000000 1.100000</pose>
+      <static>true</static>
+    </include>
+    <model name="world_drone_front">
+      <static>false</static>
+      <pose>0.200000 -2.000000 2.000000 0 0 0.000000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file:///home/eugene/ros2_ws/src/rl_enhanced_gz_scene/models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+    <model name="world_drone_rear_left">
+      <static>false</static>
+      <pose>-0.170000 -1.870000 2.000000 0 0 0.600000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file:///home/eugene/ros2_ws/src/rl_enhanced_gz_scene/models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+    <model name="world_drone_rear_right">
+      <static>false</static>
+      <pose>-0.170000 -2.130000 2.000000 0 0 -0.600000</pose>
+      <link name="link">
+        <gravity>false</gravity>
+        <inertial>
+          <mass>0.15</mass>
+          <inertia><ixx>0.0005</ixx><iyy>0.0005</iyy><izz>0.0008</izz></inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file:///home/eugene/ros2_ws/src/rl_enhanced_gz_scene/models/payload_box/meshes/quadrotor_base.dae</uri>
+              <scale>0.220000 0.220000 0.220000</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.92 0.92 0.92 1</ambient>
+            <diffuse>0.92 0.92 0.92 1</diffuse>
+          </material>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+    <light name="fire_light_1" type="point">
+      <pose>3.185480 5.200000 2.050000 0 0 0</pose>
+      <diffuse>1.0 0.42 0.08 1</diffuse>
+      <specular>0.15 0.08 0.02 1</specular>
+      <attenuation>
+        <range>6.000</range>
+        <constant>0.250</constant>
+        <linear>0.080</linear>
+        <quadratic>0.020</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+    <light name="fire_light_2" type="point">
+      <pose>-1.114520 12.900000 2.080000 0 0 0</pose>
+      <diffuse>1.0 0.42 0.08 1</diffuse>
+      <specular>0.15 0.08 0.02 1</specular>
+      <attenuation>
+        <range>6.000</range>
+        <constant>0.250</constant>
+        <linear>0.080</linear>
+        <quadratic>0.020</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+  </world>
+</sdf>

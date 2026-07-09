@@ -25,6 +25,41 @@ Its goal is to extend the current payload trajectory planning result toward:
 - `src/uav_pose_inference/`: UAV position and formation reconstruction from cable and payload states.
 - `src/common/`: shared math, geometry, IO, and utility modules.
 
+## Input Decision For Wrench Stage
+
+For the first wrench stage, the canonical input should be a time-stamped payload trajectory rather than a velocity-only stream.
+
+Recommended priority:
+
+1. Use piecewise polynomial trajectory coefficients plus segment durations when available, because velocity and acceleration can then be recovered analytically.
+2. Fall back to `sample_t + sample_xyz` when only sampled positions are available.
+3. Treat explicit velocity and acceleration as optional overrides, mainly for external simulators or estimator outputs.
+
+Current evidence from the existing planning pipeline:
+
+- `fixed_scene_3d_demo_grid.py` exports `sample_t`, `sample_xyz`, `coeffs_x`, `coeffs_y`, `coeffs_z`, and `T_per_seg`.
+- `traj_qp_corridor.py` currently samples the solved 3D trajectory with a default spacing near `dt=0.08 s`.
+
+This means the current planner already outputs enough information to support a first-stage wrench solver without adding a ROS or Gazebo dependency.
+
+## Torque-Stage Scope
+
+The current second-stage wrench scaffold now distinguishes between:
+
+1. translational force recovery from payload acceleration,
+2. rigid-body torque recovery from angular velocity, angular acceleration, and inertia,
+3. later attachment-point and cable-force modeling, which is intentionally deferred.
+
+At this stage, payload geometry is only used to provide an inertia interface, with a uniform box inertia model as the first supported option.
+
+The framework now also exposes the rigid-body attachment variables used in the classical model:
+
+- `r_i`: attachment-point positions in the load body frame,
+- `L_i`: cable lengths,
+- `q_i`: cable directions in the load body frame,
+- equation (5) kinematics for recovering quadrotor positions,
+- a body-frame wrench map `Phi` such that `Phi T = W` for scalar cable tensions.
+
 ## Working Rules
 
 - Keep temporary scripts out of the repository root.
